@@ -39,24 +39,18 @@ function App() {
     setDesc("");
     setLocation("");
   };
-
-  const jobData = (desc, location) => {
+  const jobData = () => {
     setLoading(true);
     axios
-      .get(`./positions.json?description=${desc}&location=${location}`)
+      .get(`/positions.json?description=${desc}&location=${location}`)
       .then((res) => {
         setJobList(res.data);
         console.log(res.data);
       })
-      .catch(() => {
-        console.log("no data");
-      });
-    setLoading(false);
+      .then(() => setLoading(false));
   };
 
-  useEffect(() => {
-    jobData();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="App">
@@ -65,7 +59,11 @@ function App() {
         <img src={desk} alt="job-logo" />
       </div>
       <div className="search-area">
-        <h1>Github Job Finder</h1>
+        <div className="search-area-header">
+          <h1>Github</h1>
+          <h1>Job</h1>
+          <h1>Finder</h1>
+        </div>
         <form onSubmit={handleSubmit}>
           <input
             value={desc}
@@ -94,7 +92,7 @@ function App() {
             {jobList?.map((job, index) => (
               <div className="search-cards" key={index}>
                 <div className="card-header-img">
-                  <img src={job.logo} alt="" />
+                  <img src={job.logo} alt="logo" />
                   <p>{job.name}</p>
                 </div>
                 <div className="card-header-info">{job.title}</div>

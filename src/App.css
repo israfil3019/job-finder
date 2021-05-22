@@ -1,11 +1,19 @@
 .App {
+  font-family: cursive;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.search-area-header {
+  display: flex;
+}
+.search-area-header h1::first-letter {
+  margin-left: 1rem;
 
+  font-size: 4rem;
+}
 .header {
   display: flex;
   margin: 3rem 0;
@@ -46,6 +54,4 @@
   margin: 1rem 0;
   padding: 1rem;
   background-color: azure;
-}
-.btn {
 }
