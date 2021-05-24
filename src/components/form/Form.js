@@ -1,4 +1,3 @@
-import "./Form.css";
 import { useRef } from "react";
 
 function Form({ newQuery }) {
@@ -8,11 +7,22 @@ function Form({ newQuery }) {
   return (
     <div className="form">
       <form action="">
-        <input ref={description} type="text" placeholder="Job Description" />
+        <input
+          className="form-control"
+          ref={description}
+          type="text"
+          placeholder="Job Description"
+        />
         <br />
-        <input ref={location} type="text" placeholder="Location" />
+        <input
+          className="form-control"
+          ref={location}
+          type="text"
+          placeholder="Location"
+        />
         <br />
         <button
+          className="btn btn-primary w-100"
           type="button"
           onClick={() => {
             newQuery(description.current.value, location.current.value);

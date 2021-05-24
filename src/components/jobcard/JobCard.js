@@ -1,50 +1,36 @@
 import React from "react";
-import "./JobCard.css";
 import jobLogo from "../../assets/job-logo.svg";
 
 function JobCard({ job }) {
-  // const ID = "id-" + job.id;
+  const ID = "id-" + job.id;
   return (
-    <div className="job-card">
+    <div className="card text-center pb-2">
       <div className="logo">
-        <img src={job.company_logo ?? jobLogo} alt="" />
+        <img src={job.company_logo ?? jobLogo} alt="company-logo" />
       </div>
-
-      <div className="title">
-        <h3>{job.title}</h3>
-      </div>
-
-      <div className="company">
-        <h4>{job.company}</h4>
-      </div>
-
-      <div className="type">
-        <p>{job.type}</p>
-      </div>
-
+      <h4 className="card-title text-danger fw-bold p-2">{job.title}</h4>
+      <h5 className="card-title mt-2 fw-bold">{job.company}</h5>
+      <p className="card-text">{job.type}</p>
       <a
-        className="link"
         href={job.company_url}
         target="_blank"
         rel="noreferrer"
+        className="btn btn-primary m-1"
       >
-        <button className="custom-btn" type="button">
-          Apply
-        </button>
+        Apply
       </a>
 
       <button
         type="button"
-        className="custom-btn details"
+        className="btn btn-secondary mx-1"
         data-bs-toggle="modal"
-        data-bs-target={`${job.id}`}
+        data-bs-target={"#" + ID}
       >
         Details
       </button>
-
       <div
         className="modal fade"
-        id={job.id}
+        id={ID}
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -85,14 +71,14 @@ function JobCard({ job }) {
             </div>
             <div className="modal-footer">
               <button
-                className="custom-btn details"
+                className="btn btn-secondary"
                 type="button"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
               <a className="link" href={job.company_url}>
-                <button className="custom-btn" type="button">
+                <button className="btn btn-primary" type="button">
                   Apply
                 </button>
               </a>

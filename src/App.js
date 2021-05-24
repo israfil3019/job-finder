@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import loadingGif from "./assets/loading.gif";
 import notFound from "./assets/404.png";
 import Form from "./components/form/Form";
@@ -29,8 +29,12 @@ function App() {
     <div className="App">
       <Header />
       <Form newQuery={newQuery} />
-      {jobs?.length === 0 ? <img src={notFound} alt="" /> : null}
-      {loading ? <img src={loadingGif} alt="" srcSet="" /> : null}
+      {jobs?.length === 0 ? (
+        <img className="notfound" src={notFound} alt="not found" />
+      ) : null}
+      {loading ? (
+        <img classname="loading" src={loadingGif} alt="loading" />
+      ) : null}
 
       {jobs?.map((job) => (
         <JobCard job={job} key={job.id} />
