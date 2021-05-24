@@ -1,122 +1,41 @@
 import "./App.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { setInput } from "./helper/inputHelper";
-import desk from "./assets/job-logo.svg";
-import octocat from "./assets/octocat.png";
-import design from "./assets/design.svg";
 import loadingGif from "./assets/loading.gif";
+import notFound from "./assets/404.png";
+import Form from "./components/form/Form";
+import JobCard from "./components/jobcard/JobCard";
+import Header from "./components/header/Header";
+import axios from "axios";
+import { useState } from "react";
+import Footer from "./components/footer/Footer";
 
 function App() {
-  const [desc, setDesc] = useState("");
-  const [location, setLocation] = useState("");
-  const [jobList, setJobList] = useState([]);
-  const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [jobs, setjobs] = useState();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    jobData(desc, location);
-    console.log(`
-    description: ${desc}
-    location: ${location} 
-    `);
-    setJobList([
-      {
-        logo: jobData?.company_logo,
-        name: jobData?.company,
-        location: jobData?.location,
-        title: jobData?.title,
-        type: jobData?.type,
-        url: jobData?.url,
-      },
-    ]);
-    console.log(`
-    logo: ${jobData.company_logo}
-    name: ${jobData?.company}
-    apply_url: ${jobData?.company_url}
-    title: ${jobData?.title}
-    `);
-    setDesc("");
-    setLocation("");
-  };
-  const jobData = () => {
+  const newQuery = (description, location) => {
     setLoading(true);
-    axios
-      .get(`/positions.json?description=${desc}&location=${location}`)
+    axios({
+      method: "get",
+      url: `/positions.json?description=${description}&location=${location}`,
+    })
       .then((res) => {
-        setJobList(res.data);
-        console.log(res.data);
+        setjobs(res.data);
       })
-      .then(() => setLoading(false));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
-
-  useEffect(() => {}, []);
 
   return (
     <div className="App">
-      <div className="header">
-        <img src={octocat} alt="octocat" />
-        <img src={desk} alt="job-logo" />
-      </div>
-      <div className="search-area">
-        <div className="search-area-header">
-          <h1>Github</h1>
-          <h1>Job</h1>
-          <h1>Finder</h1>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <input
-            value={desc}
-            type="text"
-            placeholder="Description"
-            onChange={setInput(setDesc)}
-          />
-          <br />
-          <input
-            value={location}
-            type="text"
-            placeholder="Location"
-            onChange={setInput(setLocation)}
-          />
-          <br />
-          <button className="search-btn" type="submit">
-            Search
-          </button>
-        </form>
-      </div>
-      <div className="search-result">
-        {loading ? (
-          <img src={loadingGif} alt="loading" className="loading" />
-        ) : (
-          <div>
-            {jobList?.map((job, index) => (
-              <div className="search-cards" key={index}>
-                <div className="card-header-img">
-                  <img src={job.logo} alt="logo" />
-                  <p>{job.name}</p>
-                </div>
-                <div className="card-header-info">{job.title}</div>
-                <div className="card-info">
-                  <div>{job.location}</div>
-                  <div>{job.type}</div>
-                </div>
-                <a
-                  type="button"
-                  href={job.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="apply-btn"
-                >
-                  Apply
-                </a>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="footer">
-        <img src={design} alt="design" />
-      </div>
+      <Header />
+      <Form newQuery={newQuery} />
+      {jobs?.length === 0 ? <img src={notFound} alt="" /> : null}
+      {loading ? <img src={loadingGif} alt="" srcSet="" /> : null}
+
+      {jobs?.map((job) => (
+        <JobCard job={job} key={job.id} />
+      ))}
+      <Footer />
     </div>
   );
 }
