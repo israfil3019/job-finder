@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/job-finder/static/css/main.1f0cda77.chunk.css",
+    "main.js": "/job-finder/static/js/main.ed46f4be.chunk.js",
+    "main.js.map": "/job-finder/static/js/main.ed46f4be.chunk.js.map",
+    "runtime-main.js": "/job-finder/static/js/runtime-main.4c6978f4.js",
+    "runtime-main.js.map": "/job-finder/static/js/runtime-main.4c6978f4.js.map",
+    "static/js/2.2694a078.chunk.js": "/job-finder/static/js/2.2694a078.chunk.js",
+    "static/js/2.2694a078.chunk.js.map": "/job-finder/static/js/2.2694a078.chunk.js.map",
+    "static/js/3.be6b968c.chunk.js": "/job-finder/static/js/3.be6b968c.chunk.js",
+    "static/js/3.be6b968c.chunk.js.map": "/job-finder/static/js/3.be6b968c.chunk.js.map",
+    "index.html": "/job-finder/index.html",
+    "static/css/main.1f0cda77.chunk.css.map": "/job-finder/static/css/main.1f0cda77.chunk.css.map",
+    "static/js/2.2694a078.chunk.js.LICENSE.txt": "/job-finder/static/js/2.2694a078.chunk.js.LICENSE.txt",
+    "static/media/404.ed881872.png": "/job-finder/static/media/404.ed881872.png",
+    "static/media/design.9f215bce.svg": "/job-finder/static/media/design.9f215bce.svg",
+    "static/media/job-logo.bb022661.svg": "/job-finder/static/media/job-logo.bb022661.svg",
+    "static/media/loading.11562bdd.gif": "/job-finder/static/media/loading.11562bdd.gif",
+    "static/media/octocat.237e2214.png": "/job-finder/static/media/octocat.237e2214.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4c6978f4.js",
+    "static/js/2.2694a078.chunk.js",
+    "static/css/main.1f0cda77.chunk.css",
+    "static/js/main.ed46f4be.chunk.js"
+  ]
+}
